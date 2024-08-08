@@ -1,5 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+import { HomePage, LoginPage } from "./pages";
+
 function App() {
-  return <div className="bg-red-500 h-screen w-screen"></div>;
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
+  );
 }
 
 export default App;
