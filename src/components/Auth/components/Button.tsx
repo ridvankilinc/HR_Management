@@ -1,12 +1,12 @@
-import { ButtonProps } from "./types";
+import { ButtonProps } from './types';
 
-const Button = (props: ButtonProps) => {
+const Button = ({ children, ...rest }: ButtonProps) => {
   return (
     <button
-      onClick={props.onClick}
-      className="w-full p-2.5 input-background text-white font-semibold text-lg rounded"
+      {...rest}
+      className="bg-button w-full rounded p-2.5 text-lg font-semibold text-white"
     >
-      {props.name}
+      {children}
     </button>
   );
 };

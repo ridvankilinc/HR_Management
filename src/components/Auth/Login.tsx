@@ -11,12 +11,12 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-mobile sm:bg-desktop bg-base flex h-dvh w-screen flex-col bg-cover p-6">
+    <div className="bg-mobile sm:bg-desktop bg-base flex min-h-dvh w-screen flex-col bg-cover p-6">
       <img src={logo} alt="logo" className="h-10 w-40 self-start" />
       <div className="container m-auto mt-8 max-w-96 lg:max-w-[28rem]">
         <div className="flex flex-col gap-14">
-          <div className="flex flex-col gap-5 pr-10">
-            <h1 className="text-2xl font-bold text-white">
+          <div className="flex flex-col gap-5">
+            <h1 className="text-xxl font-bold text-white">
               Welcome Back, Trailblazer!
             </h1>
             <p className="text-white text-opacity-80">
@@ -56,7 +56,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <Button onClick={() => handleSignIn} name="Log In" />
+                <Button onClick={handleSignIn}>Log In</Button>
               </div>
             </form>
             <p className="text-center text-sm text-white text-opacity-80">

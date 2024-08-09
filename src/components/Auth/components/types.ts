@@ -5,7 +5,5 @@ export interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface ButtonProps {
-  name: string;
-  onClick?: (e: React.MouseEvent) => void;
-}
+export interface ButtonProps
+  extends React.ComponentPropsWithoutRef<'button'> {}

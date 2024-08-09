@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-button {
+    background: linear-gradient(45deg, rgba(246, 184, 253, 1) 0%, rgba(49, 106, 215, 1) 100%);
+}
