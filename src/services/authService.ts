@@ -1,51 +1,69 @@
-import { Employee } from "../types/types";
+const registerUser = async (data: { email: string; role: string }) => {
+  const response = await fetch("http://localhost:8088/api/v1/auth/invite", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(data),
+  });
 
-export interface SignUpCredentials {
-  email: string;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return await response.json();
+};
+
+const completeRegistiration = async (data: {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
   password: string;
-}
+  activationCode: string;
+}) => {
+  const response = await fetch(
+    "http://localhost:8088/api/v1/auth/complete-register",
+    {
+      method: "POST",
 
-export interface SignInCredentials {
-  email: string;
-  password: string;
-}
+      body: JSON.stringify(data),
+    }
+  );
 
-export interface AuthResponse {
-  employee: Employee;
-  token: string;
-}
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return await response.json();
+};
+
+const authenticate = async (data: { email: string; password: string }) => {
+  const response = await fetch("/api/v1/auth/authenticate", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return await response.json();
+};
+
+const activateAccount = async () => {
+  const response = await fetch("/auth/activate-account", {
+    method: "GET",
+  });
+
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return await response.json();
+};
 
 export const authService = {
-  signUp: async (credentials: SignUpCredentials): Promise<Employee> => {
-    const response = await fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to sign up request");
-    }
-
-    const employee = await response.json();
-    return employee;
-  },
-
-  signIn: async (credentials: SignInCredentials): Promise<AuthResponse> => {
-    const response = await fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    if (!response.ok) {
-      throw new Error("Failed to sign in request");
-    }
-
-    const data = await response.json();
-    return data;
-  },
+  registerUser,
+  completeRegistiration,
+  authenticate,
+  activateAccount,
 };

@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background-mobile {
+    background-image: url('../../public/assets/img/auth/mobile-bg.svg');
+    background-repeat: no-repeat;
+
+}
+
+.background-login {
+    background-image: url('../../public/assets/img/auth/desktop-login.svg');
+}
+
+.input-background {
+    background: linear-gradient(45deg, rgba(246,184,253,1) 0%, rgba(49,106,215,1) 100%);
+}
+
