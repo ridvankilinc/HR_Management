@@ -1,27 +1,27 @@
-import { useState } from "react";
-import logo from "../../../public/assets/img/logo.png";
-import { Button, Input } from "./components";
+import { useState } from 'react';
+import logo from '../../../public/assets/img/logo.png';
+import { Button, Input } from './components';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
 
   return (
-    <div className="h-dvh w-screen background-login bg-background flex flex-col p-6">
-      <img src={logo} alt="logo" className="w-40 h-10 self-start" />
-      <div className="container max-w-96 mt-8 lg:max-w-[28rem] m-auto">
+    <div className="bg-mobile sm:bg-desktop bg-base flex h-dvh w-screen flex-col bg-cover p-6">
+      <img src={logo} alt="logo" className="h-10 w-40 self-start" />
+      <div className="container m-auto mt-8 max-w-96 lg:max-w-[28rem]">
         <div className="flex flex-col gap-14">
           <div className="flex flex-col gap-5 pr-10">
-            <h1 className="text-white font-bold text-2xl">
+            <h1 className="text-2xl font-bold text-white">
               Welcome Back, Trailblazer!
             </h1>
             <p className="text-white text-opacity-80">
-              We are excited to have your back. Log in now and access your
-              account.
+              We are excited to have your back. Log in now and access
+              your account.
             </p>
           </div>
           <div className="flex flex-col gap-4">
@@ -41,7 +41,7 @@ const Login = () => {
                       type="password"
                       placeholder="Password"
                     />
-                    <div className="flex justify-between items-center text-white text-sm text-opacity-80">
+                    <div className="flex items-center justify-between text-sm text-white text-opacity-80">
                       <div className="flex gap-3">
                         <input type="checkbox" />
                         <p className="cursor-pointer hover:text-white">
@@ -59,9 +59,11 @@ const Login = () => {
                 <Button onClick={() => handleSignIn} name="Log In" />
               </div>
             </form>
-            <p className="text-white text-sm text-center text-opacity-80">
-              Don't have an account yet?{" "}
-              <a className="text-white font-bold cursor-pointer">Login</a>
+            <p className="text-center text-sm text-white text-opacity-80">
+              Don't have an account yet?{' '}
+              <a className="cursor-pointer font-bold text-white">
+                Login
+              </a>
             </p>
           </div>
         </div>
