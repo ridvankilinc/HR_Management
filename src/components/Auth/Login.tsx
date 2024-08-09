@@ -1,13 +1,28 @@
 import { useState } from "react";
 import logo from "../../../public/assets/img/logo.png";
 import { Button, Input } from "./components";
+import { useAuthenticateMutation } from "../../hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { mutate: authenticate } = useAuthenticateMutation();
 
   const handleSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    authenticate(
+      { email, password },
+      {
+        onSuccess: (data) => {
+          localStorage.setItem("token", data.token);
+          console.log("Login success");
+        },
+        onError: (error) => {
+          console.error("Login failed: ", error);
+        },
+      }
+    );
   };
 
   return (
@@ -56,7 +71,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <Button onClick={() => handleSignIn} name="Log In" />
+                <Button onClick={handleSignIn} name="Log In" />
               </div>
             </form>
             <p className="text-white text-sm text-center text-opacity-80">

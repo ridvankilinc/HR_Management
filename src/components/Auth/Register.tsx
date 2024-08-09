@@ -1,30 +1,12 @@
 import { useState } from "react";
 import logo from "../../../public/assets/img/logo.png";
 import { Button, Input } from "./components";
-import { useRegisterMutation } from "../../hooks/useAuth";
 
 const Register = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-
-  const { mutate: registerUser } = useRegisterMutation();
-
-  const handleSignUp = async (e: React.MouseEvent) => {
-    console.log("handleSignUp function called");
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      return console.log("Test123");
-    }
-
-    try {
-      await registerUser({ email, role: "user" });
-      console.log("Registration successful");
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
-  };
 
   return (
     <div className="h-dvh w-screen bg-background background-login flex flex-col p-6">
@@ -67,7 +49,7 @@ const Register = () => {
                     placeholder="Confirm Password"
                   />
                 </div>
-                <Button name="Register" onClick={handleSignUp} />
+                <Button name="Register" />
               </div>
             </form>
             <p className="text-white text-sm text-center text-opacity-80">

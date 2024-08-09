@@ -7,5 +7,5 @@ export interface InputProps {
 
 export interface ButtonProps {
   name: string;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }

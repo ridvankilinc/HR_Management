@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { authService } from "../services/authService";
 
 export const useRegisterMutation = () => {
@@ -15,16 +15,6 @@ export const useRegisterMutation = () => {
   });
 };
 
-export const useCompleteRegistrationMutation = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation(authService.completeRegistiration, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["register"]);
-    },
-  });
-};
-
 export const useAuthenticateMutation = () => {
   const queryClient = useQueryClient();
 
@@ -33,8 +23,4 @@ export const useAuthenticateMutation = () => {
       queryClient.invalidateQueries(["autenticate"]);
     },
   });
-};
-
-export const useActivateAccountQuery = () => {
-  return useQuery(["activate-account"], authService.activateAccount);
 };
