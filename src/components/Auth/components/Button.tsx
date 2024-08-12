@@ -3,6 +3,7 @@ import { ButtonProps } from "./types";
 const Button = (props: ButtonProps) => {
   return (
     <button
+      type="submit"
       onClick={props.onClick}
       className="w-full p-2.5 input-background text-white font-semibold text-lg rounded"
     >

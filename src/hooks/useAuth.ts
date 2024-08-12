@@ -1,16 +1,12 @@
 import { useMutation, useQueryClient } from "react-query";
-import { authService } from "../services/authService";
+import { authService } from "../services/auth";
 
 export const useRegisterMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(authService.registerUser, {
-    onSuccess: (data) => {
-      console.log("Registration successful:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries(["register"]);
-    },
-    onError: (error) => {
-      console.error("Registration failed:", error);
     },
   });
 };
@@ -20,7 +16,17 @@ export const useAuthenticateMutation = () => {
 
   return useMutation(authService.authenticate, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["autenticate"]);
+      queryClient.invalidateQueries(["authenticate"]);
+    },
+  });
+};
+
+export const useInvitationMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(authService.invitation, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["invite"]);
     },
   });
 };
