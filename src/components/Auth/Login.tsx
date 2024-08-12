@@ -8,21 +8,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { mutate: authenticate } = useAuthenticateMutation();
 
-  const handleSignIn = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    authenticate(
-      { email, password },
-      {
-        onSuccess: (data) => {
-          localStorage.setItem("token", data.token);
-          console.log("Login success");
-        },
-        onError: (error) => {
-          console.error("Login failed: ", error);
-        },
-      }
-    );
+    const payload = {
+      email: email,
+      password: password,
+    };
+
+    authenticate(payload, {
+      onSuccess: (data) => {
+        localStorage.setItem("token", data.token);
+      },
+    });
   };
 
   return (
@@ -40,13 +38,13 @@ const Login = () => {
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <form action="">
+            <form onSubmit={handleSignIn}>
               <div className="flex flex-col gap-14">
                 <div className="flex flex-col gap-6">
                   <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    type="email"
+                    type="text"
                     placeholder="Email"
                   />
                   <div className="flex flex-col gap-3">
@@ -71,7 +69,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-                <Button onClick={handleSignIn} name="Log In" />
+                <Button name="Log In" />
               </div>
             </form>
             <p className="text-white text-sm text-center text-opacity-80">

@@ -1,12 +1,30 @@
 import { useState } from "react";
 import logo from "../../../public/assets/img/logo.png";
 import { Button, Input } from "./components";
+import {} from "../../hooks";
+import { useRegisterMutation } from "../../hooks/useAuth";
 
 const Register = () => {
-  const [name, setName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [dateOfBirth, setDateOfBirth] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const { mutate: registerUser } = useRegisterMutation();
+
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const payload = {
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      email: email,
+      password: password,
+    };
+
+    registerUser(payload);
+  };
 
   return (
     <div className="h-dvh w-screen bg-background background-login flex flex-col p-6">
@@ -21,32 +39,40 @@ const Register = () => {
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <form action="" className="">
+            <form onSubmit={handleRegister}>
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-6">
+                  <div className="flex justify-between">
+                    <Input
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      type="text"
+                      placeholder="First Name"
+                    />
+                    <Input
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      type="text"
+                      placeholder="Last Name"
+                    />
+                  </div>
                   <Input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={dateOfBirth}
+                    onChange={(e) => setDateOfBirth(e.target.value)}
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="Date Of Birth"
                   />
                   <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    placeholder="Email Adress"
+                    type="text"
+                    placeholder="Activation Code"
                   />
                   <Input
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     placeholder="Password"
-                  />
-                  <Input
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    type="password"
-                    placeholder="Confirm Password"
                   />
                 </div>
                 <Button name="Register" />
